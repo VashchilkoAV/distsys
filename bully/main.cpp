@@ -76,10 +76,8 @@ int workFunction_Elections(Process *dp, Message m) {
             dp->context_bully.coordinator = dp->node;
             dp->context_bully.waiting_for_alive = false;
             for (int neib : neibs) {
-                if (neib > dp->node) {
-                    int res = nl->send(dp->node, neib, Message("Elections_coordinator"));
-                    printf("[%d]: Sent Elections coordinator to [%d] with code %d\n", dp->node, neib, res);
-                }
+                int res = nl->send(dp->node, neib, Message("Elections_coordinator"));
+                printf("[%d]: Sent Elections coordinator to [%d] with code %d\n", dp->node, neib, res);
             }
 
             return 1;
